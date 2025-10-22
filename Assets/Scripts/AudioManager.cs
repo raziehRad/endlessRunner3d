@@ -22,6 +22,6 @@
         }
 
         public void PlayJumpSound() => PlaySound(_jumpSound);
-        public void PlayItemSound() => PlaySound(_itemSound);
+        public void PlayItemSound(AudioClip audioClip) => PlaySound(audioClip);
         public void PlayGameOverSound() => PlaySound(_gameOverSound);
     }

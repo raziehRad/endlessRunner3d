@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.92, y: 1.36, z: 1.8}
+  m_LocalScale: {x: 1.92, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3945073963203303798}
@@ -1643,19 +1643,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.20623
+      value: 0.99798644
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.19
+      value: 1.08588
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2772,11 +2772,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.20623
+      value: 0.97945875
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.014
+      value: 0.12739
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3460,8 +3460,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.77009, y: 0.45000005, z: 4.711173}
-  m_Center: {x: 0.0008250207, y: 0.22500002, z: -1.1590171}
+  m_Size: {x: 1.77009, y: 0.64184445, z: 4.711173}
+  m_Center: {x: 0.00082504866, y: -0.069773726, z: -1.1590171}
 --- !u!114 &5290224876972830734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3474,7 +3474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4505b76302f34bcdbdb03daa17e73dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 60
+  groundScrip: {fileID: 11400000, guid: bb1a51eb016baa942919d2732c7a3b82, type: 2}
 --- !u!4 &7559751417206274052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a933ff28d724f604ba37ccc082645899, type: 3}

@@ -12,8 +12,8 @@
             var chancePos = Random.Range(0f, 1f);
             float zpos=groundData.transform.position.z;
             if (chancePos<0.35) zpos= groundData.transform.position.z;//middle
-            else if(chancePos>0.35 && chancePos<0.7) zpos=groundData.transform.position.z + (groundData.Width/2f)-2;//left
-            else if(chancePos>0.7)zpos=groundData.transform.position.z - (groundData.Width/2f)+2;//right
+            else if(chancePos>0.35 && chancePos<0.7) zpos=groundData.transform.position.z + (groundData.groundScrip.width/2f)-2;//left
+            else if(chancePos>0.7)zpos=groundData.transform.position.z - (groundData.groundScrip.width/2f)+2;//right
             var item = _itemPool.GetObject();
             if (item != null)
             {

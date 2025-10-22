@@ -11,20 +11,21 @@ public class GroundSpawner : MonoBehaviour
     [SerializeField] private ItemSpawner _razorSpawner;
     [SerializeField] private PlayerController _player;
     [SerializeField] private int _initialCount = 3;
-    [SerializeField] private Vector2 Zspawning = new Vector2(1, 3);
-    [SerializeField] private Vector2 Yspawning = new Vector2(-1, 1);
+    //[SerializeField] private Vector2 Zspawning = new Vector2(1, 3);
+   // [SerializeField] private Vector2 Yspawning = new Vector2(-1, 1);
     private List<GameObject> grounds=new List<GameObject>();
     [SerializeField] private float speed=5f;
-    private int nextGroundIndex = 0;  
+    private int nextGroundIndex = 0; 
+    private float fixedSpeed=5f;
     private void Start()
     {
         float spawnZ = 0;
         for (int i = 0; i < _initialCount; i++)
         {
-            float yPos = Random.Range(Yspawning.x, Yspawning.y);
-            GameObject go = SpawnGround(spawnZ, yPos,true);
-            float spacing = Random.Range(Zspawning.x, Zspawning.y);
-            spawnZ += GetWidth(go) + spacing;
+            //float yPos = Random.Range(Yspawning.x, Yspawning.y);
+            GameObject go = SpawnGround(spawnZ, 0,true);
+            //float spacing = Random.Range(Zspawning.x, Zspawning.y);
+            spawnZ += GetWidth(go) ;
         }
     }
 
@@ -43,7 +44,7 @@ public class GroundSpawner : MonoBehaviour
         GameObject newGround = _groundPool.GetObject();
         if (newGround != null)
         {
-            newGround.transform.position = new Vector3(0, yPos, zPos);
+            newGround.transform.position = new Vector3(0, 0, zPos);
             newGround.SetActive(true);
             grounds.Add(newGround);
             _itemSpawner.Spawner(newGround.GetComponent<GroundData>());
@@ -56,7 +57,7 @@ public class GroundSpawner : MonoBehaviour
     {
         var currentGround = grounds[nextGroundIndex].GetComponent<GroundData>();
         
-        if (_player.transform.position.z - currentGround.transform.position.z > currentGround.Width)
+        if (_player.transform.position.z - currentGround.transform.position.z > currentGround.groundScrip.width)
         {
             float maxZ = currentGround.transform.position.z;
             foreach (var ground in grounds)
@@ -64,10 +65,10 @@ public class GroundSpawner : MonoBehaviour
                 if (ground.transform.position.z > maxZ)
                     maxZ = ground.transform.position.z;
             }
-            float spacing = Random.Range(Zspawning.x, Zspawning.y);
-            float yPos = Random.Range(Yspawning.x, Yspawning.y);
+          //  float spacing = Random.Range(Zspawning.x, Zspawning.y);
+            //float yPos = Random.Range(Yspawning.x, Yspawning.y);
             currentGround.transform.position =
-                new Vector3(currentGround.transform.position.x, currentGround.transform.position.y+yPos, maxZ + currentGround.Width+spacing);
+                new Vector3(currentGround.transform.position.x, currentGround.transform.position.y, maxZ + currentGround.groundScrip.width);
             
             nextGroundIndex = (nextGroundIndex + 1) % _initialCount;
         }
@@ -77,8 +78,14 @@ public class GroundSpawner : MonoBehaviour
     {
         GroundData mt = obj.GetComponent<GroundData>(); 
         if (mt != null)
-            return mt.Width;
+            return mt.groundScrip.width;
         else
             return 3;
+    }
+
+    public void SetSpeed(int boostedSpeed, bool isBoosted)
+    {
+        if (isBoosted) speed = boostedSpeed;
+        else speed = fixedSpeed;
     }
 }
