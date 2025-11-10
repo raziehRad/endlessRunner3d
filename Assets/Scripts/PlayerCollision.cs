@@ -28,7 +28,6 @@ public class PlayerCollision : MonoBehaviour
             AudioManager.instance.PlayItemSound(data.clip);
             score+=data.value;
             UIManager.instance.SetScore(score);
-            Debug.Log("Collected item! Score: " + score);
             other.gameObject.SetActive(false);
         }
         if (other.CompareTag("Razor"))
@@ -37,7 +36,7 @@ public class PlayerCollision : MonoBehaviour
             other.gameObject.SetActive(false);
             UIManager.instance.SetHealth(data.damage);
             
-            StartCoroutine(_playerController.PlayDamageAnimation());
+            //StartCoroutine(_playerController.PlayDamageAnimation());
         }
     }
 

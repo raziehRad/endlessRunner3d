@@ -9,6 +9,7 @@
         public SpriteRenderer image;
         public int value;
         public int damage;
+        public int offset;
         public ItemType itemType;
         public AudioClip clip;
     }

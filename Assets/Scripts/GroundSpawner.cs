@@ -11,20 +11,18 @@ public class GroundSpawner : MonoBehaviour
     [SerializeField] private ItemSpawner _razorSpawner;
     [SerializeField] private PlayerController _player;
     [SerializeField] private int _initialCount = 3;
-    //[SerializeField] private Vector2 Zspawning = new Vector2(1, 3);
-   // [SerializeField] private Vector2 Yspawning = new Vector2(-1, 1);
+    [SerializeField] private Vector2 razorCount = new Vector2(1, 7);
+   [SerializeField] private Vector2 itemCount = new Vector2(1, 5);
     private List<GameObject> grounds=new List<GameObject>();
     [SerializeField] private float speed=5f;
     private int nextGroundIndex = 0; 
-    private float fixedSpeed=5f;
+    [SerializeField]  private float fixedSpeed=5f;
     private void Start()
     {
         float spawnZ = 0;
         for (int i = 0; i < _initialCount; i++)
         {
-            //float yPos = Random.Range(Yspawning.x, Yspawning.y);
-            GameObject go = SpawnGround(spawnZ, 0,true);
-            //float spacing = Random.Range(Zspawning.x, Zspawning.y);
+            GameObject go = SpawnGround(spawnZ);
             spawnZ += GetWidth(go) ;
         }
     }
@@ -39,7 +37,7 @@ public class GroundSpawner : MonoBehaviour
         CheckForRecycle();
     }
 
-    private GameObject SpawnGround(float zPos, float yPos, bool check)
+    private GameObject SpawnGround(float zPos)
     {
         GameObject newGround = _groundPool.GetObject();
         if (newGround != null)
@@ -47,10 +45,24 @@ public class GroundSpawner : MonoBehaviour
             newGround.transform.position = new Vector3(0, 0, zPos);
             newGround.SetActive(true);
             grounds.Add(newGround);
-            _itemSpawner.Spawner(newGround.GetComponent<GroundData>());
-            _razorSpawner.Spawner(newGround.GetComponent<GroundData>());
+            SpawnerItems(newGround);
         }
         return newGround;
+    }
+
+    private void SpawnerItems(GameObject newGround)
+    {
+        var randItem = Random.Range(itemCount.x, itemCount.y);
+        var randrazor = Random.Range(razorCount.x, razorCount.y);
+        for (int i = 0; i < randItem; i++)
+        {
+            _itemSpawner.Spawner(newGround.GetComponent<GroundData>());
+        }
+
+        for (int i = 0; i < randrazor; i++)
+        {
+            _razorSpawner.Spawner(newGround.GetComponent<GroundData>());
+        }
     }
 
     private void CheckForRecycle()
@@ -65,12 +77,9 @@ public class GroundSpawner : MonoBehaviour
                 if (ground.transform.position.z > maxZ)
                     maxZ = ground.transform.position.z;
             }
-          //  float spacing = Random.Range(Zspawning.x, Zspawning.y);
-            //float yPos = Random.Range(Yspawning.x, Yspawning.y);
-            currentGround.transform.position =
-                new Vector3(currentGround.transform.position.x, currentGround.transform.position.y, maxZ + currentGround.groundScrip.width);
-            
+            currentGround.transform.position = new Vector3(currentGround.transform.position.x, currentGround.transform.position.y, maxZ + currentGround.groundScrip.width);
             nextGroundIndex = (nextGroundIndex + 1) % _initialCount;
+            SpawnerItems(grounds[nextGroundIndex]);
         }
     }
 

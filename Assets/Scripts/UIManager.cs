@@ -86,6 +86,10 @@ public class UIManager : MonoBehaviour
             _boostedItem.gameObject.SetActive(false);
         }
 
+        if (boostedCount%5==0)
+        {
+            AddHealth(10);
+        }
         if (boostedCount >= 10)
         {
             _boostedIcon.SetActive(true);
@@ -111,7 +115,13 @@ public class UIManager : MonoBehaviour
         ScaleBounce(_healthTxt.transform);
         BoostedTurnOff();
     }
-
+    public void AddHealth(int value)
+    {
+        if (health<fullHealth)
+            health += value;
+        _healthTxt.text = health.ToString();
+        ScaleBounce(_healthTxt.transform);
+    }
     private void BoostedTurnOff()
     {
         _boostedItem.gameObject.SetActive(false);

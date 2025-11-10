@@ -5,4 +5,5 @@
     {
        // public float Width=3.5f;
         public GroundScrip groundScrip;
+        public Transform[] groundPos;
     }
